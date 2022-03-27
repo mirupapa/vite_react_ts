@@ -6,14 +6,14 @@ export default defineConfig({
   server: {
     open: true,
   },
-  root: './src',
-  build: {
-    outDir: '../public',
-  },
   plugins: [react()],
+  root: './src',
   resolve: {
     alias: {
-      '@/': `${__dirname}/src/`, // path.join(__dirname, "src/") でも可
+      '@/': `${__dirname}/src/`,
     },
+  },
+  build: {
+    outDir: '../public',
   },
 })
