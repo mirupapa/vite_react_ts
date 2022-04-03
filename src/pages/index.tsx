@@ -1,8 +1,7 @@
 import React from 'react'
-import { Box } from '@chakra-ui/react'
 
 const Index = () => {
-  return <Box>index</Box>
+  return <div>Index</div>
 }
 
 export default Index
