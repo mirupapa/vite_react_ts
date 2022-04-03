@@ -1,21 +1,21 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import './index.css'
+import { createRoot } from 'react-dom/client'
 import Index from '@/pages/index'
 import Login from '@/pages/login'
-import { ChakraProvider } from '@chakra-ui/react'
+import SignUp from '@/pages/signup'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-ReactDOM.render(
+const container = document.getElementById('root') as HTMLElement
+const root = createRoot(container)
+
+root.render(
   <React.StrictMode>
-    <ChakraProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="login" element={<Login />} />
-        </Routes>
-      </BrowserRouter>
-    </ChakraProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Index />} />
+        <Route path="login" element={<Login />} />
+        <Route path="signup" element={<SignUp />} />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>,
-  document.getElementById('root'),
 )

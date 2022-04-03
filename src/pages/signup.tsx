@@ -14,7 +14,7 @@ const Login = () => {
       />
       <input width={200} onChange={(e) => handlers.onChangePassword(e.target.value)} onSubmit={handlers.onClickLogin} />
       <div style={{ marginTop: 20 }}>
-        <button onClick={() => handlers.onClickLogin()}>Login</button>
+        <button onClick={() => handlers.onClickSignUp()}>SignUp</button>
       </div>
     </div>
   )
