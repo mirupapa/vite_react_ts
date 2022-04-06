@@ -4,6 +4,7 @@ import Index from '@/pages/index'
 import Login from '@/pages/login'
 import SignUp from '@/pages/signup'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import 'tailwindcss/tailwind.css'
 
 const container = document.getElementById('root') as HTMLElement
 const root = createRoot(container)

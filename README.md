@@ -4,7 +4,7 @@
 - react17 -> react18
 - Firebase
 - typescript
-- ~~chakraUI~~ -> 考え中
+- ~~chakraUI~~ -> やっぱtailwindcss
 - react-router
 - SWR
 - MSW
