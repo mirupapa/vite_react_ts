@@ -1,26 +1,23 @@
-import useSWR from 'swr'
-import { collection, query, where, getDocs } from 'firebase/firestore'
-import { db } from '@/util/firebase'
-
-const fetcher = async () => {
-  const q = query(collection(db, 'todo'))
-  const querySnapshot = await getDocs(q)
-  const result: string[] = []
-  querySnapshot.forEach((doc) => {
-    result.push(doc.data().text)
-  })
-  return result
-}
+import useTodoList from '@/hooks/useTodoList'
 
 const TodoList = () => {
-  const { data, error } = useSWR('todo_list', fetcher)
-  if (error) return <div>failed to load</div>
-  if (!data) return <div>loading...</div>
+  const { data, handlers } = useTodoList()
   return (
-    <div className="p-5">
-      {data.map((text, index) => {
-        return <div key={index}>{text}</div>
-      })}
+    <div className="h-[calc(100vh_-_70px)] overflow-auto p-2">
+      {data &&
+        data.map((item, index) => {
+          return (
+            <div className=" flex  border-b p-3 last:border-b-0 " key={index}>
+              <input
+                type="checkbox"
+                className="my-auto mx-0 w-10"
+                checked={item.check}
+                onChange={(evt) => handlers.onCheckTodo(item.id, evt.target.checked)}
+              />
+              <p className={item.check ? 'line-through' : ''}>{item.text}</p>
+            </div>
+          )
+        })}
     </div>
   )
 }
