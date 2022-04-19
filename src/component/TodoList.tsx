@@ -1,9 +1,15 @@
 import useTodoList from '@/hooks/useTodoList'
 
+type TodoList = {
+  id: string
+  text: string
+  check: boolean
+}[]
+
 const TodoList = () => {
   const { data, handlers } = useTodoList()
   return (
-    <div className="h-[calc(100vh_-_70px)] overflow-auto p-2">
+    <div className="h-[calc(100vh_-_100px)] overflow-auto p-2">
       {data &&
         data.map((item, index) => {
           return (
