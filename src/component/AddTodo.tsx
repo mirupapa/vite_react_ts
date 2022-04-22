@@ -9,6 +9,11 @@ const AddTodo = () => {
         value={state.text}
         onChange={(e) => handlers.onChangeText(e.target.value)}
         onSubmit={handlers.AddTodo}
+        onKeyDown={(evt) => {
+          if (evt.key === 'Enter') {
+            handlers.AddTodo()
+          }
+        }}
       />
       <div className="cursor-pointer rounded-md border-2 bg-gray-300 px-2 text-center hover:bg-gray-400 hover:text-white">
         <button onClick={handlers.AddTodo}>登録</button>
