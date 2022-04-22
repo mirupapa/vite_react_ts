@@ -33,7 +33,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ check, id, text }) => {
           ref={ref.inputRef}
         />
       ) : (
-        <p className={`flex-auto ${check ? 'line-through' : ''}`} onClick={() => handlers.onClickText(text)}>
+        <p className={`flex-auto truncate ${check ? 'line-through' : ''}`} onClick={() => handlers.onClickText(text)}>
           {text}
         </p>
       )}
