@@ -1,4 +1,6 @@
 import useTodoItem from '@/hooks/useTodoItem'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCoffee, faXmark } from '@fortawesome/free-solid-svg-icons'
 
 export type TodoItemProps = {
   id: string
@@ -12,7 +14,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ check, id, text }) => {
     <div className="flex border-b p-3 last:border-b-0 ">
       <input
         type="checkbox"
-        className="my-auto mx-0 w-10"
+        className="my-auto mx-0 w-10 cursor-pointer"
         checked={check}
         onChange={(evt) => handlers.onCheckTodo(id, evt.target.checked)}
       />
@@ -20,7 +22,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ check, id, text }) => {
         <input
           type="text"
           value={state.inputText}
-          className="border-2"
+          className="flex-auto border-2"
           onBlur={() => handlers.updateText(id)}
           onKeyDown={(evt) => {
             if (evt.key === 'Enter') {
@@ -31,10 +33,15 @@ const TodoItem: React.FC<TodoItemProps> = ({ check, id, text }) => {
           ref={ref.inputRef}
         />
       ) : (
-        <p className={check ? 'line-through' : ''} onClick={() => handlers.onClickText(text)}>
+        <p className={`flex-auto ${check ? 'line-through' : ''}`} onClick={() => handlers.onClickText(text)}>
           {text}
         </p>
       )}
+      <FontAwesomeIcon
+        icon={faXmark}
+        className="my-auto mx-0 w-10 cursor-pointer text-red-500"
+        onClick={() => handlers.deleteText(id)}
+      />
     </div>
   )
 }

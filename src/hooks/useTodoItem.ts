@@ -1,7 +1,7 @@
 import { useAuthContext } from '@/context/authContext'
 import { FETCH_TODO_LIST, FIREBASE_COLLECTION_TODO } from '@/util/define'
 import { db } from '@/util/firebase'
-import { doc, updateDoc } from 'firebase/firestore'
+import { doc, updateDoc, deleteDoc } from 'firebase/firestore'
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSWRConfig } from 'swr'
@@ -46,6 +46,20 @@ const useTodoItem = () => {
       navigate('/login')
     }
   }
+  const deleteText = async (id: string) => {
+    const isDelete = window.confirm('削除してよろしいですか？')
+    if (isDelete) {
+      if (user !== null) {
+        const docRef = doc(db, FIREBASE_COLLECTION_TODO, id)
+        await deleteDoc(docRef)
+        await mutate(FETCH_TODO_LIST)
+        setInputText('')
+        setIsInput(false)
+      } else {
+        navigate('/login')
+      }
+    }
+  }
 
   useEffect(() => {
     if (isInput) {
@@ -66,6 +80,7 @@ const useTodoItem = () => {
       onClickText,
       onChangeText,
       updateText,
+      deleteText,
     },
   }
 }
